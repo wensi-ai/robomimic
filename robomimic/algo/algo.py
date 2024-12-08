@@ -495,7 +495,7 @@ class RolloutPolicy(object):
                 and np.array values for each key)
         """
         ob = TensorUtils.to_tensor(ob)
-        ob = TensorUtils.to_batch(ob)
+        # ob = TensorUtils.to_batch(ob)
         ob = TensorUtils.to_device(ob, self.policy.device)
         ob = TensorUtils.to_float(ob)
         if self.obs_normalization_stats is not None:
@@ -523,4 +523,4 @@ class RolloutPolicy(object):
         if goal is not None:
             goal = self._prepare_observation(goal)
         ac = self.policy.get_action(obs_dict=ob, goal_dict=goal)
-        return TensorUtils.to_numpy(ac[0])
+        return TensorUtils.to_numpy(ac)
